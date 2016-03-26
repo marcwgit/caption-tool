@@ -9,7 +9,8 @@ my @CATS;
 my $filesnum = 5;
 
 #first
-my $timestring = "ffprobe -i " . $basename . $filesnum -1 .".m4a   -v quiet -show_format | sed -n 's/duration=//p'";
+my $filenum = $filesnum - 1;
+my $timestring = "ffprobe -i " . $basename . $filenum .".m4a   -v quiet -show_format | sed -n 's/duration=//p'";
 my $time = `$timestring`;
 print "time is ",$time,"\n";
 my $arg1 = "-d " . $time;
