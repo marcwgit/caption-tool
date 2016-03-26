@@ -14,7 +14,7 @@ my $timestring = "ffprobe -i " . $basename . $filenum .".m4a   -v quiet -show_fo
 my $time = `$timestring`;
 print "time is ",$time,"\n";
 my $arg1 = "-d " . $time;
-my $fileEndcapt = $basename . "5.srt";
+my $fileEndcapt = $basename . $filesnum . ".srt";
 my $arg2 = "-i " . $fileEndcapt;
 my $arg3 = "-o out.srt";
 my $arg4 = 0;
