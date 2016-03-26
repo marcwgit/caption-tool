@@ -25,7 +25,7 @@ my $arg6 = "out.srt";
 my $arg7 = "cap_MonMar21_01_01PM-4.srt";
 
 #my @CATS = ($arg7, 'out.srt');
-($arg7, 'out.srt') = @CATS;
+@CATS = ($arg7, 'out.srt');
 
     open SEL, '>', 'selected.srt' or die $!;
    FILE: foreach (@CATS) {
