@@ -7,6 +7,7 @@ print "hello \n";
 my $basename = "cap_MonMar21_01_01PM-";
 my @CATS;
 my $filesnum = 5;
+my $fileEndcapt = $basename . $filesnum . ".srt";
 
 
 #first
@@ -17,7 +18,7 @@ for (my $filenum = $filesnum - 1; $filenum > 0; $filenum--) {
   my $time = `$timestring`;
   print "time is ",$time,"\n";
   my $arg1 = "-d " . $time;
-  my $fileEndcapt = $basename . "5.srt";
+
   my $arg2 = "-i " . $fileEndcapt;
   my $arg3 = "-o out.srt";
   my $arg4 = 0;
@@ -26,12 +27,12 @@ for (my $filenum = $filesnum - 1; $filenum > 0; $filenum--) {
   my $filelastcap =  $basename . $filenum . ".srt";
   my $arg5 = "combfile.srt";
   my $arg6 = "out.srt";
-  my $arg7 = "cap_MonMar21_01_01PM-4.srt";
+  my $arg7 =  $basename . $filenum .".srt"; #"cap_MonMar21_01_01PM-4.srt"
 
-  #my @CATS = ($arg7, 'out.srt');
-  $arg7 = $CATS[0]; $arg6 = $CATS[1];
+  my @CATS = ($arg7, 'out.srt');
+  # $arg7 = $CATS[0]; $arg6 = $CATS[1];
 
-  my ($arg7, $arg6) = @CATS;
+  # my ($arg7, $arg6) = @CATS;
   print $arg7; print $arg6;
 
   foreach my $n (@CATS) {
@@ -54,6 +55,10 @@ for (my $filenum = $filesnum - 1; $filenum > 0; $filenum--) {
     }
    close(SEL);
 }
+
+
+
+
 #second
     $timestring = "ffprobe -i " . $basename . "3.m4a   -v quiet -show_format | sed -n 's/duration=//p'";
     $time = `$timestring`;
