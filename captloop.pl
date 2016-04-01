@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-
+#works
 use strict;
 use warnings;
 
@@ -23,6 +23,7 @@ for (my $filenum = $filesnum - 1; $filenum > 0; $filenum--) {
   my $arg3 = "-o out.srt";
   my $arg4 = 0;
   system ("srttool" , $arg1 , $arg2 , $arg3 );
+  print "srttool  $arg1  $arg2  $arg3 \n";
 
   my $filelastcap =  $basename . $filenum . ".srt";
   my $arg5 = "combfile.srt";
@@ -36,11 +37,15 @@ for (my $filenum = $filesnum - 1; $filenum > 0; $filenum--) {
   print $arg7; print $arg6;
 
   foreach my $n (@CATS) {
-    say $n;
+    #say $n;
+    print "$n\n";
     print "CATS\n";
   }
 
-  open SEL, '>', 'selected.srt' or die $!;
+  $fileEndcapt = $basename . ".srt";
+
+  open SEL, '>', $fileEndcapt or die $!;
+
   FILE: foreach (@CATS) {
 
       open(FILE, $_) || ((warn "Can't open file $_\n"), next FILE);
@@ -54,11 +59,12 @@ for (my $filenum = $filesnum - 1; $filenum > 0; $filenum--) {
 
     }
    close(SEL);
+
 }
 
 
 
-
+=begin
 #second
     $timestring = "ffprobe -i " . $basename . "3.m4a   -v quiet -show_format | sed -n 's/duration=//p'";
     $time = `$timestring`;
@@ -157,3 +163,4 @@ for (my $filenum = $filesnum - 1; $filenum > 0; $filenum--) {
 
             }
             close(SEL);
+            =cut
