@@ -4,9 +4,9 @@ use strict;
 use warnings;
 
 print "hello \n";
-my $basename = "cap_MonMar21_01_01PM-";
+my $basename = "Tue-Mar-22-02-51PMGroupB-";
 my @CATS;
-my $filesnum = 5;
+my $filesnum = 3;
 my $fileEndcapt = $basename . $filesnum . ".srt";
 
 
@@ -62,6 +62,12 @@ for (my $filenum = $filesnum - 1; $filenum > 0; $filenum--) {
 
 }
 
+my $arg11 = " -r ";
+
+  my $arg21 = "-i Tue-Mar-22-02-51PMGroupB-.srt ";
+  my $arg31 = "-o Tue-Mar-22-02-51PMGroupB.srt";
+
+system ("srttool", $arg11 ,$arg21 , $arg31  );
 
 
 =begin
@@ -130,6 +136,8 @@ for (my $filenum = $filesnum - 1; $filenum > 0; $filenum--) {
 
          }
          close(SEL);
+
+
 
 #fourth
           $timestring = "ffprobe -i " . $basename . "1.m4a   -v quiet -show_format | sed -n 's/duration=//p'";
