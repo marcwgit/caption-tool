@@ -4,17 +4,17 @@ use strict;
 use warnings;
 
 print "hello \n";
-my $basename = "Tue-Mar-22-02-51PMGroupB-";
+my $basename = "Tue-Mar-22-02-51PMGroupB";
 my @CATS;
 my $filesnum = 3;
-my $fileEndcapt = $basename . $filesnum . ".srt";
+my $fileEndcapt = $basename . "-" . $filesnum . ".srt";
 
 
 #first
 
 for (my $filenum = $filesnum - 1; $filenum > 0; $filenum--) {
 
-  my $timestring = "ffprobe -i " . $basename . $filenum .".m4a   -v quiet -show_format | sed -n 's/duration=//p'";
+  my $timestring = "ffprobe -i " . $basename . "-" .  $filenum .".m4a   -v quiet -show_format | sed -n 's/duration=//p'";
   my $time = `$timestring`;
   print "time is ",$time,"\n";
   my $arg1 = "-d " . $time;
@@ -25,10 +25,10 @@ for (my $filenum = $filesnum - 1; $filenum > 0; $filenum--) {
   system ("srttool" , $arg1 , $arg2 , $arg3 );
   print "srttool  $arg1  $arg2  $arg3 \n";
 
-  my $filelastcap =  $basename . $filenum . ".srt";
+  my $filelastcap =  $basename .  "-" . $filenum . ".srt";
   my $arg5 = "combfile.srt";
   my $arg6 = "out.srt";
-  my $arg7 =  $basename . $filenum .".srt"; #"cap_MonMar21_01_01PM-4.srt"
+  my $arg7 =  $basename .  "-" . $filenum .".srt"; #"cap_MonMar21_01_01PM-4.srt"
 
   my @CATS = ($arg7, 'out.srt');
   # $arg7 = $CATS[0]; $arg6 = $CATS[1];
@@ -42,7 +42,7 @@ for (my $filenum = $filesnum - 1; $filenum > 0; $filenum--) {
     print "CATS\n";
   }
 
-  $fileEndcapt = $basename . ".srt";
+  $fileEndcapt = $basename .  "-" . ".srt";
 
   open SEL, '>', $fileEndcapt or die $!;
 
@@ -64,8 +64,8 @@ for (my $filenum = $filesnum - 1; $filenum > 0; $filenum--) {
 
 my $arg11 = " -r ";
 
-  my $arg21 = "-i Tue-Mar-22-02-51PMGroupB-.srt ";
-  my $arg31 = "-o Tue-Mar-22-02-51PMGroupB.srt";
+  my $arg21 = "-i " . $basename .  "-" . ".srt";
+  my $arg31 = "-o " . $basename .  ".srt";
 
 system ("srttool", $arg11 ,$arg21 , $arg31  );
 
