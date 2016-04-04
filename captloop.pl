@@ -2,11 +2,15 @@
 #works
 use strict;
 use warnings;
+use Data::Dumper qw(Dumper);
+
+my ($basename, $filesnum) = @ARGV;
+print Dumper \@ARGV;
 
 print "hello \n";
-my $basename = "Tue-Mar-22-02-51PMGroupB";
+#my $basename = "Tue-Mar-22-02-51PMGroupB";
 my @CATS;
-my $filesnum = 3;
+#my $filesnum = 3;
 my $fileEndcapt = $basename . "-" . $filesnum . ".srt";
 
 
