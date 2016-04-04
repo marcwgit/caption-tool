@@ -73,6 +73,11 @@ my $arg11 = " -r ";
 
 system ("srttool", $arg11 ,$arg21 , $arg31  );
 
+open TOMS, '>', $basename .  ".srt" or die $!;
+#open(FILE, $basename .  ".srt")
+perl -i.bak -pe 's/\n/\r\n/' <TOMS>;
+close(TOMS);
+
 
 =begin
 #second
