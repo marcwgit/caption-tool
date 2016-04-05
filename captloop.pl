@@ -66,17 +66,22 @@ for (my $filenum = $filesnum - 1; $filenum > 0; $filenum--) {
 
 }
 
-my $arg11 = " -r";
+my $arg11 = "-r";
 
-  my $arg21 = "-i capThuMar24_1258PM-.srt";
-  #my $arg21 = "-i " . $basename .  "-" . ".srt";
-#  my $arg31 = "-o " . $basename .  ".srt";
-  my $arg31 = "-o capThuMar24_1258PM.srt";
+#  my $arg21 = "-i capThuMar24_1258PM-.srt";
+my $arg21 = "-i " . $basename .  "-" . ".srt";
+  my $arg31 = "-o " . $basename .  ".srt";
+#  my $arg31 = "-o capThuMar24_1258PM.srt";
   print "srttool  $arg11  $arg21  $arg31 \n";
 
-system ("srttool" , $arg11 , $arg21 , $arg31  );
+  my $renum = "srttool -r -i ". $basename . "-.srt -o " . $basename . ".srt";
+  print $renum;
 
-open TOMS, '>', $basename .  ".srt" or die $!;
+#system ("srttool",$arg11, $arg21,$arg31 );
+
+system($renum);
+
+##open TOMS, '>', $basename .  ".srt" or die $!;
 #open(FILE, $basename .  ".srt")
 #perl -i.bak -pe 's/\n/\r\n/' <TOMS>;
 close(TOMS);
