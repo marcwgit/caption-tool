@@ -86,18 +86,28 @@ open FILEIN, "<" , $eolfname or die $!;
 
 my @lines = <FILEIN>;
 close FILEIN;
+
 #print @lines;
 print "$lines[1]\n";
+my $size = @lines;
+print "$size\n";
 
 open FILEOUT, ">" , $basename or die $!;
+my $n = 0;
 foreach my $line (@lines)
 {
   # Use substitute regex to replace "dangerous"
   # with the word "safe"
  #$line =~ s/dangerous/safe/gi;
- $line =~ s/\n$/\r\n/;
+
+ if ($line !~ m/\r\n/) {
+ $line =~ s/(?:\n$|\r$|\n\r$)/\r\n/;
+ }
+ $n++;
+ print "$line $n\n";
  print FILEOUT $line;
 }
+print "$size\n";
 
 close FILEOUT;
 
