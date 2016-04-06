@@ -11,13 +11,24 @@ print "hello \n";
 
 my @lines = <>;
 print @lines;
-foreach my $line (@array_of_data)
+
+open FILEOUT, ">" , $basename or die $!;
+foreach my $line (@lines)
 {
   # Use substitute regex to replace "dangerous"
   # with the word "safe"
- $line =~ s/dangerous/safe/gi;
+ #$line =~ s/dangerous/safe/gi;
+ $line =~ s/\n$/\r\n/;
+ print FILEOUT $line;
 }
 
+close FILEOUT;
+
+
+
+
+
+=begin
 open DATAOUT, ">$data_file" or die "can't open $data_file $!";
 
 # Start a foreach loop assigning
@@ -33,5 +44,6 @@ close (DATAOUT)
 
 #open TOMS, '>', $basename .  ".srt" or die $!;
 #open(FILE, $basename .  ".srt");
-#perl -i.bak -pe 's/\n/\r\n/' <TOMS>;
+#perl -i.bak -pe 's/\n$/\r\n/' <TOMS>;
 #close(TOMS);
+=cut
