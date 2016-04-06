@@ -92,7 +92,7 @@ print "$lines[1]\n";
 my $size = @lines;
 print "$size\n";
 
-open FILEOUT, ">" , $basename or die $!;
+open FILEOUT, ">" , $eolfname or die $!;
 my $n = 0;
 foreach my $line (@lines)
 {
