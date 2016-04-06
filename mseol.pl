@@ -10,7 +10,8 @@ print Dumper \@ARGV;
 print "hello \n";
 
 my @lines = <>;
-print @lines;
+#print @lines;
+print "$lines[1]\n";
 
 open FILEOUT, ">" , $basename or die $!;
 foreach my $line (@lines)

@@ -75,16 +75,39 @@ my $arg21 = "-i " . $basename .  "-" . ".srt";
   print "srttool  $arg11  $arg21  $arg31 \n";
 
   my $renum = "srttool -r -i ". $basename . "-.srt -o " . $basename . ".srt";
-  print $renum;
+  print "$renum\n";
 
 #system ("srttool",$arg11, $arg21,$arg31 );
 
 system($renum);
 
+my $eolfname = $basename. ".srt";
+open FILEIN, "<" , $eolfname or die $!;
+
+my @lines = <FILEIN>;
+close FILEIN;
+#print @lines;
+print "$lines[1]\n";
+
+open FILEOUT, ">" , $basename or die $!;
+foreach my $line (@lines)
+{
+  # Use substitute regex to replace "dangerous"
+  # with the word "safe"
+ #$line =~ s/dangerous/safe/gi;
+ $line =~ s/\n$/\r\n/;
+ print FILEOUT $line;
+}
+
+close FILEOUT;
+
+
+
+
 ##open TOMS, '>', $basename .  ".srt" or die $!;
 #open(FILE, $basename .  ".srt")
 #perl -i.bak -pe 's/\n/\r\n/' <TOMS>;
-close(TOMS);
+#close(TOMS);
 
 
 =begin
