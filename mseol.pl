@@ -1,5 +1,8 @@
 #!/usr/bin/perl
 
+# set CR LF using argv
+# this works
+
 use strict;
 use warnings;
 use Data::Dumper qw(Dumper);
@@ -19,8 +22,11 @@ foreach my $line (@lines)
   # Use substitute regex to replace "dangerous"
   # with the word "safe"
  #$line =~ s/dangerous/safe/gi;
- $line =~ s/\n$/\r\n/;
- print FILEOUT $line;
+ #$line =~ s/\n$/\r\n/;
+	if ($line !~ m/\r\n/) {
+		$line =~ s/(?:\n$|\r$|\n\r$)/\r\n/;
+	}
+	print FILEOUT $line;
 }
 
 close FILEOUT;
