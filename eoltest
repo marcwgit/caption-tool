@@ -1,0 +1,10 @@
+use strict;
+use warnings;
+
+binmode(STDOUT);
+
+open(my $fh, '<', 'file.txt') or die $!;
+while (<$fh>) { 
+   s/\r\n\z//;
+   print "$_\n";
+}
