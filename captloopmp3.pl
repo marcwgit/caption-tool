@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-uses original mp3 split files to cat srt
+#uses original mp3 split files to cat srt
 
 #in process
 use strict;
